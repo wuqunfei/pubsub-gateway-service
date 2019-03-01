@@ -1,0 +1,26 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KSERVERS}
+    properties:
+      security.protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KUSER}" password="${KPWD}"
+    consumer:
+      group-id: ${KGROUP}
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      auto-commit-interval: 100ms
+      fetch-max-wait: 100ms
+      fetch-min-size: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 500
+    producer:
+      retries: 0
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 5
