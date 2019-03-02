@@ -11,6 +11,9 @@ public class PubSubServiceConfig {
     private Integer pingTimeout;
     private Integer pintInterval;
     private Integer upgradeTimeout;
+    private Integer bossThreads;
+    private Integer workerThreads;
+    private boolean useLinuxNativeEpoll;
 
 
     public String getHost() {
@@ -51,5 +54,29 @@ public class PubSubServiceConfig {
 
     public void setUpgradeTimeout(Integer upgradeTimeout) {
         this.upgradeTimeout = upgradeTimeout;
+    }
+
+    public Integer getBossThreads() {
+        return bossThreads;
+    }
+
+    public void setBossThreads(Integer bossThreads) {
+        this.bossThreads = bossThreads;
+    }
+
+    public Integer getWorkerThreads() {
+        return workerThreads;
+    }
+
+    public void setWorkerThreads(Integer workerThreads) {
+        this.workerThreads = workerThreads;
+    }
+
+    public boolean isUseLinuxNativeEpoll() {
+        return useLinuxNativeEpoll;
+    }
+
+    public void setUseLinuxNativeEpoll(boolean useLinuxNativeEpoll) {
+        this.useLinuxNativeEpoll = useLinuxNativeEpoll;
     }
 }

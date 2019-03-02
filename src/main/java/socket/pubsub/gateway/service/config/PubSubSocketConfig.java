@@ -1,7 +1,5 @@
 package socket.pubsub.gateway.service.config;
 
-import com.corundumstudio.socketio.AuthorizationListener;
-import com.corundumstudio.socketio.HandshakeData;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 import com.corundumstudio.socketio.store.RedissonStoreFactory;
@@ -12,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
-import java.util.Optional;
 
 @Configuration
 public class PubSubSocketConfig {
@@ -37,6 +34,9 @@ public class PubSubSocketConfig {
         config.setPingTimeout(pubSubServiceConfig.getPingTimeout());
         config.setPingInterval(pubSubServiceConfig.getPintInterval());
         config.setUpgradeTimeout(pubSubServiceConfig.getUpgradeTimeout());
+        config.setBossThreads(pubSubServiceConfig.getBossThreads());
+        config.setWorkerThreads(pubSubServiceConfig.getWorkerThreads());
+        config.setUseLinuxNativeEpoll(pubSubServiceConfig.isUseLinuxNativeEpoll());
         config.setStoreFactory(storeFactory);
         SocketIOServer socketIOServer = new SocketIOServer(config);
         return socketIOServer;
