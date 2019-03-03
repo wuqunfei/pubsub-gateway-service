@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket IO test</title>
+    <script type="application/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script type="application/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+Message: <label id="msg"> </label>
+
+<script type="application/javascript">
+
+    var socket = io('http://localhost:8888');
+    socket.on('news', function (data) {
+        console.log(data);
+        $("#msg").text(data);
+    });
+</script>
+</body>
+</html>
