@@ -19,7 +19,8 @@ public class PubSubKafkaConsumer {
     @KafkaListener(topics = {"il5k22ai-events"})
     public void listenEvents(String message) {
         logger.info("get Message:" + message);
-        socketIOServer.getBroadcastOperations().sendEvent("news", "Kafka:" + message + " at: " + new Date().toString());
+        //socketIOServer.getBroadcastOperations().sendEvent("news", "Kafka:" + message + " at: " + new Date().toString());
+        socketIOServer.getRoomOperations("il5k22ai-events").sendEvent("news", "Kafka:" + message + " at: " + new Date().toString());
     }
 
 }

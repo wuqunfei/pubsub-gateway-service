@@ -36,6 +36,7 @@ public class MessageHandler {
     public void onConnect(@NotNull SocketIOClient client) {
         UUID sessionId = client.getSessionId();
         logger.info("client connected: " + sessionId.toString());
+        client.joinRoom("il5k22ai-events");
     }
 
     @OnDisconnect
