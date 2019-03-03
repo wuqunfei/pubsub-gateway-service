@@ -1,9 +1,12 @@
 package socket.pubsub.gateway.service.component;
 
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
+import com.corundumstudio.socketio.annotation.OnEvent;
+import io.socket.engineio.client.Socket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +35,20 @@ public class MessageHandler {
     @OnConnect
     public void onConnect(@NotNull SocketIOClient client) {
         UUID sessionId = client.getSessionId();
-        logger.info(sessionId.toString());
+        logger.info("client connected: " + sessionId.toString());
     }
 
     @OnDisconnect
     public void onDisConnect(@NotNull SocketIOClient client) {
         UUID sessionId = client.getSessionId();
-        logger.info(sessionId.toString());
+        logger.info("client disconnected:" + sessionId.toString());
         client.disconnect();
+    }
+
+    @OnEvent(value = "update")
+    public void onMessage(@NotNull SocketIOClient client, AckRequest ackRequest, Object data) {
+        logger.info(data.toString());
+        ackRequest.sendAckData("nihao");
     }
 
 

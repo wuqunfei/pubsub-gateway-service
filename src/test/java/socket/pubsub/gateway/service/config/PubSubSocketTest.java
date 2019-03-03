@@ -3,6 +3,7 @@ package socket.pubsub.gateway.service.config;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import org.apache.tomcat.jni.Time;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,7 @@ public class PubSubSocketTest {
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-
+                socket.disconnect();
             }
         }).on(Socket.EVENT_CONNECT_ERROR, new Emitter.Listener() {
             @Override
@@ -51,7 +52,16 @@ public class PubSubSocketTest {
                 socket.disconnect();
             }
         });
-        socket.connect();
+
+        for (int i = 0; i < 100; i++) {
+            try {
+                socket.connect();
+                Thread.sleep(5000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }
