@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class PubSubKafkaProducer {
     private static final Logger logger = LoggerFactory.getLogger(PubSubKafkaProducer.class);
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
 
-    @Autowired
+//    @Autowired
     public PubSubKafkaProducer(KafkaTemplate<String, Object> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }

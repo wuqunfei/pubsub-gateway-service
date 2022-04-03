@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+//@Component
 public class PubSubKafkaConsumer {
     private static final Logger logger = LoggerFactory.getLogger(PubSubKafkaConsumer.class);
 
-    @Autowired
+//    @Autowired
     private SocketIOServer socketIOServer;
 
-    @KafkaListener(topics = {"il5k22ai-events"})
+//    @KafkaListener(topics = {"il5k22ai-events"})
     public void listenEvents(String message) {
         logger.info("get Message:" + message);
         //socketIOServer.getBroadcastOperations().sendEvent("news", "Kafka:" + message + " at: " + new Date().toString());
