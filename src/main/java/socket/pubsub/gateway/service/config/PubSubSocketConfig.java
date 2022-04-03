@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class PubSubSocketConfig {
 
     @Resource
-    private PubSubServiceConfig pubSubServiceConfig;
+    private PubSubSocketProperties pubSubSocketProperties;
 
     private static final Logger logger = LoggerFactory.getLogger(PubSubSocketConfig.class);
 
@@ -29,14 +29,14 @@ public class PubSubSocketConfig {
     @Bean
     public SocketIOServer socketIOServer(RedissonStoreFactory storeFactory) {
         com.corundumstudio.socketio.Configuration config = new com.corundumstudio.socketio.Configuration();
-        config.setHostname(pubSubServiceConfig.getHost());
-        config.setPort(pubSubServiceConfig.getPort());
-        config.setPingTimeout(pubSubServiceConfig.getPingTimeout());
-        config.setPingInterval(pubSubServiceConfig.getPintInterval());
-        config.setUpgradeTimeout(pubSubServiceConfig.getUpgradeTimeout());
-        config.setBossThreads(pubSubServiceConfig.getBossThreads());
-        config.setWorkerThreads(pubSubServiceConfig.getWorkerThreads());
-        config.setUseLinuxNativeEpoll(pubSubServiceConfig.isUseLinuxNativeEpoll());
+        config.setHostname(pubSubSocketProperties.getHost());
+        config.setPort(pubSubSocketProperties.getPort());
+        config.setPingTimeout(pubSubSocketProperties.getPingTimeout());
+        config.setPingInterval(pubSubSocketProperties.getPintInterval());
+        config.setUpgradeTimeout(pubSubSocketProperties.getUpgradeTimeout());
+        config.setBossThreads(pubSubSocketProperties.getBossThreads());
+        config.setWorkerThreads(pubSubSocketProperties.getWorkerThreads());
+        config.setUseLinuxNativeEpoll(pubSubSocketProperties.isUseLinuxNativeEpoll());
         config.setStoreFactory(storeFactory);
         SocketIOServer socketIOServer = new SocketIOServer(config);
         return socketIOServer;

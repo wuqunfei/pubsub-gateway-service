@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "pubsub")
-public class PubSubServiceConfig {
+public class PubSubSocketProperties {
     private String host;
     private Integer port;
     private Integer pingTimeout;
